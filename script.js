@@ -36,3 +36,42 @@ var threeSumClosest = function (nums, target) {
 console.log(threeSumClosest([-1, 2, 1, -4], 1));
 // Try your own test cases.. :)
 
+
+/* 
+Input: l1 = [2,4,3], l2 = [5,6,4]
+Output: [7,0,8]
+Explanation: 342 + 465 = 807
+*/
+
+function reverseNumber(arr) {
+    let reverse = 0;
+
+    for (let i = arr.length - 1; i >= 0; i--) {
+        reverse = reverse + arr[i] * (10 ** (i));
+    }
+    return reverse;
+}
+
+let addTwoNumbers = function (l1, l2) {
+    //     for (let i=0; i< l1.length; i++){
+    //         sum = l1[i]+l2[i];
+    //         if(sum>=10){
+    //             result.push(((sum%10)+carry))
+    //             carry = 1;
+    //         }else{
+
+    //         }
+    let num1 = reverseNumber(l1);
+    let num2 = reverseNumber(l2);
+    let sum = num1 + num2;
+    let result = [];
+    let digit = 0;
+    while (sum > 0) {
+        digit = sum % 10;
+        result.push(digit);
+        sum = Math.floor(sum / 10);
+    }
+    return result;
+}
+
+console.log(addTwoNumbers([9, 9, 9, 9, 9, 9, 9], [9, 9, 9, 9]));
