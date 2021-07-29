@@ -75,3 +75,29 @@ let addTwoNumbers = function (l1, l2) {
 }
 
 console.log(addTwoNumbers([9, 9, 9, 9, 9, 9, 9], [9, 9, 9, 9]));
+
+
+/*
+Q3) Given n non - negative integers a1, a2, ..., an, where
+ each represents a point at coordinate(i, ai).n vertical lines
+  are drawn such that the two endpoints of the line i is at(i, ai)
+   and(i, 0).Find two lines, which, together with the x - axis forms a container,
+    such that the container contains the most water.
+ */
+
+var maxArea = function (height) {
+
+    //     Brute Force
+    //     let area =[];
+    //     for (let i=0; i<height.length; i++){
+    //         for (let j=i+1; j<height.length; j++){
+    //              area.push((height[i] < height[j] ? height[i] : height[j])*(j-i));
+
+    //         }
+    //     }
+    //     area.sort((a,b) => a-b);
+    //     return area[area.length-1];
+
+
+
+};
