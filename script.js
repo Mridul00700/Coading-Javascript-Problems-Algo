@@ -85,19 +85,36 @@ Q3) Given n non - negative integers a1, a2, ..., an, where
     such that the container contains the most water.
  */
 
+// var maxArea = function (height) {
+
+//     Brute Force Complexity O(N^2)
+//     let area =[];
+//     for (let i=0; i<height.length; i++){
+//         for (let j=i+1; j<height.length; j++){
+//              area.push((height[i] < height[j] ? height[i] : height[j])*(j-i));
+
+//         }
+//     }
+//     area.sort((a,b) => a-b);
+//     return area[area.length-1];
+
+// Efficient Code --- Complexity O(N)
 var maxArea = function (height) {
-
-    //     Brute Force
-    //     let area =[];
-    //     for (let i=0; i<height.length; i++){
-    //         for (let j=i+1; j<height.length; j++){
-    //              area.push((height[i] < height[j] ? height[i] : height[j])*(j-i));
-
-    //         }
-    //     }
-    //     area.sort((a,b) => a-b);
-    //     return area[area.length-1];
-
-
-
+    let area = 0;
+    let max = 0;
+    let left = 0;
+    let right = height.length - 1;
+    while (left < right) {
+        area = (height[left] < height[right] ? height[left] : height[right]) * (right - left);
+        max = max > area ? max : area;
+        if (height[left] < height[right]) {
+            left++;
+        }
+        else right--;
+    }
+    return max
 };
+
+console.log(maxArea([1, 2, 6, 7, 8, 9, 2, 3, 5, 6, 7, 9, 7, 3, 1, 2, 8]));
+
+
