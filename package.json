@@ -1,0 +1,19 @@
+{
+  "name": "javascript-codes",
+  "version": "1.0.0",
+  "description": "Programs-Algo ",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mridul00700/Coading-Javascript-Problems-Algo.git"
+  },
+  "author": "Mridul Mishra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mridul00700/Coading-Javascript-Problems-Algo/issues"
+  },
+  "homepage": "https://github.com/Mridul00700/Coading-Javascript-Problems-Algo#readme"
+}
