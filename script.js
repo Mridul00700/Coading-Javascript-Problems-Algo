@@ -120,7 +120,7 @@ console.log(maxArea([1, 2, 6, 7, 8, 9, 2, 3, 5, 6, 7, 9, 7, 3, 1, 2, 8]));
 
 
 /*
-Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+Q4) Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
 
 An input string is valid if:
 
@@ -176,3 +176,39 @@ var isValid = function (s) {
 };
 
 console.log(isValid("()[]{}"));
+
+
+/*
+Q5) Given a string s, return the longest palindromic substring in s.
+*/
+
+var longestPalindrome = function (s) {
+    s.toLowerCase();
+    let max = -1;
+    let palinLong = "";
+    let forward = "";
+    let reverse = "";
+
+    for (let i = 0; i < s.length; i++) {
+
+        //If length left to check is smaller than max palindrome we have, then no need to check further
+        if (max > (s.length - i)) {
+            break;
+        }
+
+        for (let j = i; j < s.length; j++) {
+            //Forward and reverse string to check palindraome
+            forward = forward + s[j]
+            reverse = s[j] + reverse;
+            if (forward === reverse && max < forward.length) {
+                max = forward.length;
+                palinLong = forward;
+            }
+        }
+        forward = "";
+        reverse = "";
+    }
+    return palinLong;
+};
+
+console.log(longestPalindrome('ABABAababa12'));
