@@ -212,3 +212,50 @@ var longestPalindrome = function (s) {
 };
 
 console.log(longestPalindrome('ABABAababa12'));
+
+
+/*
+Q6) Given n non-negative integers
+    representing an elevation map where the width of each bar is 1,
+    compute how much water it can trap after raining.
+    Input: height = [0,1,0,2,1,0,1,3,2,1,2,1]
+    Output: 6
+*/
+
+var trap = function (height) {
+
+    let water = 0;
+    let temp = 0;
+    let prev = 0;
+    let prevIndex = 0;
+    prev = height[0];
+    for (let i = 1; i < height.length; i++) {
+
+        if (height[i] >= prev) {
+            prev = height[i];
+            prevIndex = i;
+            temp = 0;
+        }
+        else {
+            water += prev - height[i];
+            temp += prev - height[i];
+        }
+    }
+    if (prevIndex < height.length - 1) {
+        water -= temp;
+
+        prev = height[height.length - 1];
+
+        for (let i = height.length - 2; i >= prevIndex; i--) {
+            if (height[i] >= prev) {
+                prev = height[i];
+            }
+            else {
+                water += prev - height[i];
+            }
+        }
+    }
+    return water;
+};
+
+console.log(trap([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]));
