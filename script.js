@@ -259,3 +259,30 @@ var trap = function (height) {
 };
 
 console.log(trap([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]));
+
+/*
+Q7) Given a string s, find the length of the longest substring without repeating characters.
+*/
+var lengthOfLongestSubstring = function (s) {
+    let sub = "";
+    let len = 0;
+    if (s.length !== 0) {
+        len = 1;
+    }
+    for (let i = 0; i < s.length; i++) {
+        sub = s[i];
+        for (let j = i + 1; j < s.length; j++) {
+            if (sub.includes(s[j]))
+                break;
+            sub += s[j];
+            if (sub.length > len) {
+                len = sub.length;
+            }
+        }
+    }
+    return len;
+};
+
+console.log(lengthOfLongestSubstring("abcabcbb"));
+
+// Efficient method... Sliding window method. 
