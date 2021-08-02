@@ -309,3 +309,44 @@ var lengthOfLongestSubstringEfficient = function (s) {
 };
 
 console.log(lengthOfLongestSubstringEfficient("abcabcbb"));
+
+/*
+Q8) Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+You can return the answer in any order.
+*/
+var twoSum = function (nums, target) {
+    let index = [];
+    let a = 0;
+    for (let i = 0; i < nums.length; i++) {
+        a = nums.findIndex(j => (target - nums[i]) === j)
+        if (a !== -1 && a !== i) {
+            index.push(i, a);
+            break;
+        }
+    }
+    return index;
+};
+
+console.log(twoSum([2, 7, 11, 15], 9));
+
+// Efficent Code - 
+var twoSumEff = function (nums, target) {
+    let index = [];
+    const mapOfNums = {};
+    let i = 0
+    for (i = 0; i < nums.length; i++) {
+        mapOfNums[nums[i]] = i;
+    }
+    for (i = 0; i < nums.length; i++) {
+        if (mapOfNums[(target - nums[i])] !== undefined && mapOfNums[(target - nums[i])] !== i) {
+            index.push(i, mapOfNums[(target - nums[i])]);
+            break;
+        }
+    }
+    return index;
+};
+
+console.log(twoSumEff([2, 7, 11, 15], 9));
