@@ -350,3 +350,36 @@ var twoSumEff = function (nums, target) {
 };
 
 console.log(twoSumEff([2, 7, 11, 15], 9));
+
+/*
+The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+
+P   A   H   N
+A P L S I I G
+Y   I   R
+And then read line by line: "PAHNAPLSIIGYIR"
+*/
+
+var convert = function (s, numRows) {
+    if (s.length <= 2) return s;
+    let a = [];
+    let row = 0;
+    let isDown = false;
+
+    for (let i = 0; i < s.length; i++) {
+        if (!a[row])
+            a[row] = s.charAt(i);
+        else
+            a[row] += s.charAt(i);
+        if (row === (numRows - 1))
+            isDown = true;
+        if (row === 0)
+            isDown = false;
+        row = isDown ? row - 1 : row + 1;
+    }
+    let result = "";
+    a.forEach(el => result += el)
+    return result;
+};
+
+console.log(convert("PAYPALISHIRING", 5));
