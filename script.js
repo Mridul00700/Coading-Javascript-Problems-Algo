@@ -352,7 +352,7 @@ var twoSumEff = function (nums, target) {
 console.log(twoSumEff([2, 7, 11, 15], 9));
 
 /*
-The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+Q9) The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
 
 P   A   H   N
 A P L S I I G
@@ -383,3 +383,45 @@ var convert = function (s, numRows) {
 };
 
 console.log(convert("PAYPALISHIRING", 5));
+
+/*
+Q10) Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
+
+Symbol       Value
+I             1
+V             5
+X             10
+L             50
+C             100
+D             500
+M             1000
+Given an integer, convert it to a roman numeral.
+*/
+var intToRoman = function (num) {
+    let obj = {
+        M: 1000,
+        CM: 900,
+        D: 500,
+        CD: 400,
+        C: 100,
+        XC: 90,
+        L: 50,
+        XL: 40,
+        X: 10,
+        IX: 9,
+        V: 5,
+        IV: 4,
+        I: 1
+
+    }
+    let d = 0;
+    let roman = "";
+    for (i in obj) {
+        d = Math.floor(num / obj[i])
+        num -= d * obj[i];
+        roman += i.repeat(d);
+    }
+    return roman;
+};
+
+console.log(intToRoman(1994));
