@@ -425,3 +425,30 @@ var intToRoman = function (num) {
 };
 
 console.log(intToRoman(1994));
+
+/*
+Q11) Letter Combinations of a Phone Number
+Input: digits = "23"
+['', '','abc','def','ghi','jkl','mno','pqrs','tuv','wxyz' ]
+Output: ["ad","ae","af","bd","be","bf","cd","ce","cf"]
+*/
+
+var letterCombinations = function (digits) {
+    if (!digits) return [];
+    let arr = ['', '', 'abc', 'def', 'ghi', 'jkl', 'mno', 'pqrs', 'tuv', 'wxyz']
+    let combinations = [];
+    findComb(combinations, digits, "", 0, arr);
+    return combinations;
+
+}
+function findComb(combinations, d, previous, index, arr) {
+    if (index === d.length) {
+        combinations.push(previous)
+        return;
+    }
+    let letters = arr[+d[index]];
+    for (let i = 0; i < letters.length; i++)
+        findComb(combinations, d, previous + letters[i], index + 1, arr)
+}
+
+console.log(letterCombinations("345"));
