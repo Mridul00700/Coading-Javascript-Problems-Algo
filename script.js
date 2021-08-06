@@ -452,3 +452,32 @@ function findComb(combinations, d, previous, index, arr) {
 }
 
 console.log(letterCombinations("345"));
+
+
+/*
+Q12) Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+Input: n = 3
+Output: ["((()))","(()())","(())()","()(())","()()()"]
+*/
+
+var generateParenthesis = function (n) {
+    let len = n * 2;
+    let arr = []
+
+    function recurse(cur, open, close) {
+        if (cur.length === len) {
+            arr.push(cur);
+            return;
+        }
+        if (open < n) {
+            recurse(cur + '(', open + 1, close);
+        }
+        if (close < open) {
+            recurse(cur + ')', open, close + 1);
+        }
+    }
+    recurse("", 0, 0);
+    return arr;
+};
+
+console.log(generateParenthesis(4));
