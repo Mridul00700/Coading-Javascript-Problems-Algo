@@ -513,3 +513,26 @@ var removeDuplicates1 = function (nums) {
     return j;
 };
 console.log(removeDuplicates1([0, 0, 1, 1, 1, 2, 2, 3, 3, 4]));
+
+/*
+Q14) Given an array nums of distinct integers, return all the possible permutations. You can return the answer in any order.
+Input: nums = [1,2,3]
+Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
+*/
+var permute = function (nums) {
+
+    let res = [];
+    for (let i = 0; i < nums.length; i++) {
+        let rest = permute(nums.slice(0, i).concat(nums.slice(i + 1)));
+        if (!rest.length) {
+            res.push([nums[i]])
+        } else {
+            for (let j = 0; j < rest.length; j++) {
+                res.push([nums[i]].concat(rest[j]));
+            }
+        }
+    }
+    return res;
+};
+
+console.log(permute([1, 2, 3]));
