@@ -536,3 +536,32 @@ var permute = function (nums) {
 };
 
 console.log(permute([1, 2, 3]));
+
+
+/*
+Q15) Given two non-negative integers, num1 and num2 represented as string, return the sum of num1 and num2 as a string.
+You must solve the problem without using any built-in library for
+handling large integers (such as BigInteger). You must also not convert the inputs to integers directly.
+Input: num1 = "11", num2 = "123"
+Output: "134"
+*/
+
+var addStrings = function (num1, num2) {
+
+    const len1 = num1.length - 1;
+    const len2 = num2.length - 1;
+    let result = '';
+    let carry = 0;
+
+    for (let i = 0, len = Math.max(len1, len2); i <= len; i++) {
+        const n1 = num1[len1 - i] ? num1[len1 - i] | 0 : 0;
+        const n2 = num2[len2 - i] ? num2[len2 - i] | 0 : 0;
+
+        let temp = n1 + n2 + carry;
+        carry = temp > 9 ? 1 : 0;
+        result = `${temp % 10}${result}`;
+    }
+    return carry > 0 ? 1 + result : result;
+};
+
+console.log(addStrings("91", "93"));
