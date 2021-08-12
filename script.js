@@ -627,3 +627,36 @@ var minFlipsMonoIncr = function (s) {
     return flip;
 };
 console.log(minFlipsMonoIncr("00110"));
+
+
+/*You are given an n x n 2D matrix representing an image, rotate the image by 90 degrees (clockwise).
+
+You have to rotate the image in-place, which means you have to modify the input 2D matrix
+ directly. DO NOT allocate another 2D matrix and do the rotation.
+ Input: matrix = [[1,2,3],[4,5,6],[7,8,9]]
+Output: [[7,4,1],[8,5,2],[9,6,3]]
+
+*/
+
+var rotate = function (matrix) {
+    let y = matrix.length - 1;
+    for (let i = 0; i < matrix.length / 2; i++) {
+        let x = matrix.length - 1 - i;
+        for (let j = i; j < y; j++) {
+            let t = matrix[i][j];
+            matrix[i][j] = matrix[j][y];
+            matrix[j][y] = t;
+            t = matrix[i][j];
+            matrix[i][j] = matrix[y][x];
+            matrix[y][x] = t;
+            t = matrix[i][j];
+            matrix[i][j] = matrix[x][i];
+            matrix[x][i] = t;
+            x--;
+        }
+        y--;
+    }
+    return matrix;
+};
+
+console.log(rotate([[1, 2, 3], [4, 5, 6], [7, 8, 9]]));
