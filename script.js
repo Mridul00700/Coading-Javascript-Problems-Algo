@@ -629,7 +629,8 @@ var minFlipsMonoIncr = function (s) {
 console.log(minFlipsMonoIncr("00110"));
 
 
-/*You are given an n x n 2D matrix representing an image, rotate the image by 90 degrees (clockwise).
+/*
+Q18) You are given an n x n 2D matrix representing an image, rotate the image by 90 degrees (clockwise).
 
 You have to rotate the image in-place, which means you have to modify the input 2D matrix
  directly. DO NOT allocate another 2D matrix and do the rotation.
@@ -660,3 +661,43 @@ var rotate = function (matrix) {
 };
 
 console.log(rotate([[1, 2, 3], [4, 5, 6], [7, 8, 9]]));
+
+
+var coinChange = function(coins, amount) {
+    
+    // const dp = Array(amount+1).fill(Number.MAX_SAFE_INTEGER);
+
+    // dp[0]=0;
+
+    // for(let i=1; i<= amount; i++){
+
+    //     for(coin of coins){
+    //         if(i - coin >= 0) {
+    //             dp[i] = Math.min(dp[i], (dp[i-coin] +1))
+    //         }
+    //     }
+    // }
+
+    // if(dp[amount] === Number.MAX_SAFE_INTEGER){
+    //     return -1;
+    // }
+    // return dp[amount];
+
+    // const dp = new Array(coins.length+1).fill(new Array(amount+1).fill(Number.MAX_SAFE_INTEGER))
+    const dp = Array.from(Array(coins.length+1), () => new Array(amount+1).fill(Number.MAX_SAFE_INTEGER))
+
+    for(let i=1; i< dp.length; i++){
+        
+        dp[i][0] = 0;
+        for(let j=1; j< dp[0].length; j++){
+            if(coins[i-1] > j){
+                dp[i][j] = dp[i-1][j];
+            }else{
+                dp[i][j] = Math.min((dp[i-1][j]), (1+ dp[i][j - coins[i-1]]))
+            }
+        }
+   }
+
+   return dp[coins.length][amount] >= Number.MAX_SAFE_INTEGER ? -1 : dp[coins.length][amount]
+
+};
