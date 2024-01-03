@@ -701,3 +701,25 @@ var coinChange = function(coins, amount) {
    return dp[coins.length][amount] >= Number.MAX_SAFE_INTEGER ? -1 : dp[coins.length][amount]
 
 };
+
+var numberOfBeams = function(bank) {
+
+    let sum = 0;
+    let prev =0;
+    let curr =0;
+
+    for(let i=0; i< bank.length; i++){
+        for(let j=0; j< bank[0].length; j++){
+            if(bank[i][j] ==1){
+                sum+=prev;
+                curr++;
+            }
+
+        }
+        if(curr !== 0){
+        prev=curr;
+        curr=0;
+        }
+    }
+    return sum;
+};
