@@ -741,3 +741,28 @@ var longestCommonSubsequence = function(text1, text2) {
     }
     return dp[0][0];
  };
+
+ var minDistance = function(word1, word2) {
+    const arr = Array.from(new Array(word1.length+1), ()=> new Array(word2.length+1));
+
+    let w1 = word1.length;
+    let w2 = word2.length;
+
+    for(let i=0; i<=word1.length; i++){
+        arr[i][word2.length] = w1--;
+    }
+    for(let j=0; j<=word2.length; j++){
+        arr[word1.length][j] = w2--
+    }
+
+    for(let i=word1.length-1; i>=0; i--){
+        for(let j=word2.length-1; j>=0; j--){
+            if(word1[i]===word2[j]){
+                arr[i][j] = arr[i+1][j+1]
+            }else{
+                arr[i][j] = 1+ Math.min(arr[i][j+1],Math.min(arr[i+1][j], arr[i+1][j+1]));
+            }
+        }
+    }
+    return arr[0][0];
+}
