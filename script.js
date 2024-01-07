@@ -789,3 +789,52 @@ var isInterleave = function(s1, s2, s3) {
     }
     return dp[0][0];
 };  
+
+var LRUCache = function(capacity) {
+
+    // map will help us storing and keeping order
+       this.capacity = capacity;
+       this.map = new Map();
+       
+   };
+   
+   /** 
+    * @param {number} key
+    * @return {number}
+    */
+   LRUCache.prototype.get = function(key) {
+       // update the latest and return value or -1 
+       // we can delete and add to maintain the order
+   
+       if(this.map.has(key)){
+           const val = this.map.get(key);
+           this.map.delete(key);
+           this.map.set(key, val);
+           return this.map.get(key);
+       }else{
+           return -1
+       }
+       
+   };
+   
+   /** 
+    * @param {number} key 
+    * @param {number} value
+    * @return {void}
+    */
+   LRUCache.prototype.put = function(key, value) {
+       // update if its already there else remove the lru if capacity = length of map add it 
+       const prev = this.get(key);
+       if(prev === -1){
+           if(this.map.size === this.capacity){
+               // evit the lru 
+               for(let [firstKey] of this.map){
+                   this.map.delete(firstKey);
+                   break;
+               }
+           }
+       }
+       //actual update
+       this.map.set(key, value);
+       
+   };
