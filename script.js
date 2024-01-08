@@ -838,3 +838,27 @@ var LRUCache = function(capacity) {
        this.map.set(key, value);
        
    };
+
+   var climbStairs = function(n) {
+    // fabonacci series
+
+    // let a =0;
+    // let b=1;
+    // let s=0;
+
+    // for(i=1; i<=n; i++){
+    //     s = a + b;
+    //     a = b;
+    //     b = s; 
+    // }
+    // return s
+
+    const dp = new Array(n+1);
+    dp[n] = 1;
+    dp[n-1] =1;
+
+    for(let i=n-2; i>=0; i--){
+        dp[i] = dp[i+1] + dp[i+2];
+    }
+    return dp[0];
+};
