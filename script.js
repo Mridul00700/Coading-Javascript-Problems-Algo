@@ -862,3 +862,38 @@ var LRUCache = function(capacity) {
     }
     return dp[0];
 };
+
+
+const arr = [4, 7, [6, 1, [5, 2], 2 ],[9], 8];
+// (4 * 1) + ( 7 * 1) + (6 * 2) + (1 * 2) + (5 * 3) + (2 * 3) = 46
+
+
+let o=1;
+    let sum =0;
+const sumNest = (arr) => {
+
+    
+    // if(arr.length)
+    // base case
+    // if()
+    // if(arr.length===0){
+    //     return 0
+    // }
+    
+    
+    for(let i=0; i< arr.length; i++){
+        if(typeof arr[i] === 'object'){
+            ++o;
+            // console.log(arr[i])
+            sum = (sumNest(arr[i]));
+            o=o-1;
+            
+        }else{
+            console.log(arr[i], o, sum)
+            sum+= (arr[i]*o);
+        }
+    }
+    return sum;
+} 
+
+console.log(sumNest(arr));
