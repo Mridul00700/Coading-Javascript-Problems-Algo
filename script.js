@@ -897,3 +897,31 @@ const sumNest = (arr) => {
 } 
 
 console.log(sumNest(arr));
+
+
+
+const palin = (N, K) => {
+    let c=[];
+    let res =[];
+    for(let i=0; i<K; i++){
+        c.push(String.fromCharCode(97 + i));
+    }
+    console.log(c)
+    // abcaacba
+    let counter = Math.ceil(N/2);
+    let pick=0;
+    for(let i=0; i< counter;i++){
+        if(counter > N/2 && i===counter-1){
+             res.splice(i, 0, c[pick]);
+        }else{
+            res.splice(i, 0, c[pick], c[pick]);
+        }
+       ++pick;
+       if(pick >= c.length){
+           pick=0;
+       }
+    }
+    return res.join("");
+}
+
+console.log(palin(5, 3));
