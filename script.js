@@ -925,3 +925,39 @@ const palin = (N, K) => {
 }
 
 console.log(palin(5, 3));
+
+
+
+var longestCommonPrefix = function(strs) {
+
+    const l = strs.length;
+    const obj = {};
+    let loop = 201;
+    let ans ="";
+    let merge = strs.join("");
+
+    for(let i=0; i< l; i++){
+        obj[i]= i===0 ? strs[i].length: (strs[i].length + obj[i-1]);
+        loop = Math.min(loop, strs[i].length);
+    }
+    console.log(obj, merge, )
+    for(let i=0; i< loop; i++){
+        let temp = merge[i];
+        let tmp =1;
+        for(let j=1; j< l; j++){
+            if(merge[obj[j-1]+i] === temp){
+                tmp=1
+            }else{
+                tmp=0;
+                break;
+            }
+        }
+        if(tmp === 1){
+            ans+=merge[i];
+        }else{
+            break;
+        }
+    }
+    return ans;
+
+};
