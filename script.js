@@ -961,3 +961,55 @@ var longestCommonPrefix = function(strs) {
     return ans;
 
 };
+
+
+const a1=[
+    {uuid: 1, color: 'pink', size: 1},
+    {uuid: 2, color: 'red', size: 2},
+    {uuid: 3, color: 'orange', size: 3},
+    ]
+    
+const a2=[
+    {uuid: 2, color: 'pink', tech: 2},
+    {uuid: 3, brand: 'red', size: 2},
+    {uuid: 5, color: 'orange', tech: 3},
+    ]
+    
+    // sort
+    
+    a1.sort((a,b) => a.uuid - b.uuid)
+    a2.sort((a,b) => a.uuid - b.uuid)
+    
+    const res=[];
+    console.log(a1, a2)
+    let i=0;
+    let j=0;
+    
+    for(;i<a1.length && j<a2.length;){
+        console.log(i, j)
+        if(a1[i].uuid < a2[j].uuid){
+            res.push({...a1[i]})
+            i++;
+        }else if(a1[i].uuid === a2[j].uuid){
+            //merge
+            res.push({...a1[i], ...a2[j]});
+            i++;
+            j++
+        }else {
+            res.push({...a2[j]});
+            j++
+        }
+    }
+    if(j!= a2.length) {
+        for(;j<a2.length;j++){
+            res.push({...a2[j]})
+        }
+    }
+    if(i!= a1.length) {
+        for(;i<a1.length;i++){
+            res.push({...a1[i]})
+        }
+    }
+    
+    console.log(res)
+    
